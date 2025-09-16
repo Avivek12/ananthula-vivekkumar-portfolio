@@ -1,0 +1,501 @@
+/* about.css - Polished for about.js component */
+
+/* ---------- Theme variables ---------- */
+:root {
+  --bg-1: #1f1c2c;
+  --bg-2: #7b6b9a;
+  --accent-1: #ffcc70;
+  --accent-2: #6dd3ff;
+  --muted: rgba(255, 255, 255, 0.12);
+  --glass: rgba(255, 255, 255, 0.06);
+  --card-elev: 0 10px 30px rgba(0, 0, 0, 0.45);
+  --radius-lg: 18px;
+  --radius-md: 12px;
+  --text: #fff;
+  --max-width: 1200px;
+}
+
+/* ---------- About Section Background ---------- */
+.about-section {
+  position: relative;
+  overflow: hidden;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem 4rem 1.5rem;
+  margin: 0 auto;
+  text-align: center;
+
+  /* Gradient background */
+  background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+  background-size: 300% 300%;
+  animation: bgShift 18s ease-in-out infinite;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  z-index: 0;
+}
+
+/* Gradient animation */
+@keyframes bgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating blurry blobs */
+.about-section::before,
+.about-section::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.18;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  z-index: 0; /* background layer */
+}
+
+.about-section::before {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255, 204, 112, 0.6), transparent 70%);
+  top: -120px; left: -100px;
+  animation: floatY 12s ease-in-out infinite;
+}
+
+.about-section::after {
+  width: 450px; height: 450px;
+  background: radial-gradient(circle, rgba(0, 198, 255, 0.5), transparent 70%);
+  right: -150px; bottom: -140px;
+  animation: floatY 16s ease-in-out infinite reverse;
+}
+
+@keyframes floatY {
+  0% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-30px) rotate(12deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+/* Soft glowing dots */
+.about-section .glow {
+  position: absolute;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.7);
+  box-shadow: 0 0 20px rgba(255,255,255,0.9);
+  animation: glowPulse 4s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 1; /* above blobs, below content */
+}
+
+@keyframes glowPulse {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.8); opacity: 0.5; }
+}
+
+/* Spotlight / focus effect following cursor */
+.about-section .spotlight {
+  position: absolute;
+  top: var(--y, 50%);
+  left: var(--x, 50%);
+  transform: translate(-50%, -50%);
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
+  pointer-events: none;
+  transition: top 0.2s ease, left 0.2s ease;
+  z-index: 1; /* above blobs, below content */
+}
+
+/* Content above all */
+.about-section > *:not(.glow):not(.spotlight) {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* ---------- Title ---------- */
+.section-title {
+  z-index: 2;
+  font-size: clamp(1.6rem, 3.2vw, 2.8rem);
+  margin-top: 0; /* ✨ removes unwanted gap */
+  margin-bottom: clamp(1.2rem, 2.8vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--accent-1);
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
+  display: inline-block;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  padding: 0.25rem 0.9rem;
+  border-radius: 12px;
+}
+
+
+/* ---------- Tabs (nav cards) ---------- */
+.tab-cards {
+  z-index: 2;
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.6rem);
+  padding: 0 1rem;
+}
+
+.tab-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 1.2rem;
+  height: clamp(120px, 14vh, 150px);
+  border-radius: var(--radius-lg);
+
+  /* Gradient border effect */
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08)) padding-box,
+              linear-gradient(135deg, #ffcc70, #6dd3ff, #c77dff) border-box;
+  border: 3px solid transparent;
+
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  transition: transform .45s ease, box-shadow .45s ease, background .6s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle animated background overlay */
+.tab-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+  opacity: 0;
+  transition: opacity .5s ease;
+  z-index: 0;
+}
+
+/* On hover: glow + motion */
+.tab-card:hover {
+  transform: translateY(-10px) scale(1.05) rotate(-1deg);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.12)) padding-box,
+              linear-gradient(135deg, #ffcc70, #6dd3ff, #c77dff, #ff85ec) border-box;
+}
+.tab-card:hover::before {
+  opacity: 1;
+  animation: shimmer 2.8s linear infinite;
+}
+
+/* Active tab: more glow */
+.tab-card.active {
+  transform: translateY(-14px) scale(1.08);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.14)) padding-box,
+              linear-gradient(90deg, #ffcc70, #6dd3ff, #c77dff, #ff85ec, #70ffaf) border-box;
+}
+.tab-card.active::before {
+  opacity: 1;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Text stays above overlay */
+.tab-card h4, .tab-card .icon {
+  position: relative;
+  z-index: 1;
+}
+
+/* Gradient shimmer animation */
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+/* Generic icon container */
+.tab-card .icon {
+  width: clamp(40px, 6vw, 54px);
+  height: clamp(40px, 6vw, 54px);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.5s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Apply different gradients per card (nth-child) */
+.tab-card:nth-child(1) .icon {
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Purple → Blue */
+}
+.tab-card:nth-child(2) .icon {
+  background: linear-gradient(135deg, #ff512f, #dd2476); /* Red → Pink */
+}
+.tab-card:nth-child(3) .icon {
+  background: linear-gradient(135deg, #11998e, #38ef7d); /* Teal → Green */
+}
+.tab-card:nth-child(4) .icon {
+  background: linear-gradient(135deg, #f7971e, #ffd200); /* Orange → Yellow */
+}
+
+/* Default SVG look: white with soft shadow */
+.tab-card .icon svg {
+  color: #fff;
+  transition: transform 0.35s ease, filter 0.35s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
+}
+
+/* Hover effects */
+.tab-card .icon:hover {
+  transform: scale(1.15) rotate(6deg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+.tab-card .icon:hover svg {
+  transform: scale(1.25);
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.9));
+}
+
+/* Optional glowing animation */
+@keyframes gradientGlow {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.3); }
+  100% { filter: brightness(1); }
+}
+.tab-card .icon:hover {
+  animation: gradientGlow 2s infinite;
+}
+
+
+.tab-card:hover { 
+  transform: translateY(-10px) scale(1.04); 
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45); 
+}
+.tab-card.active { 
+  transform: translateY(-14px) scale(1.08); 
+  box-shadow: 0 30px 80px rgba(0,0,0,0.6); 
+}
+
+.tab-card.active::after {
+  content: ""; position: absolute; inset: -2px; border-radius: inherit;
+  background: linear-gradient(90deg, rgba(255,204,112,0.24), rgba(109,211,255,0.18), rgba(166,107,255,0.14));
+  filter: blur(18px); z-index: -1;
+}
+
+.tab-card h4 { margin: 0; font-size: 1rem; }
+
+/* ---------- Content area ---------- */
+.tab-content {
+  z-index: 2;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ---------- Education ---------- */
+.edu-subtabs {
+  display: flex; justify-content: center; gap: 0.6rem; flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.edu-btn {
+  border: 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.edu-btn:hover { background: #fff; color: #222; transform: translateY(-4px); }
+.edu-btn.active { background: linear-gradient(90deg, #ffcc70, #ffdca4); color: #222; }
+
+.edu-card {
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius-lg);
+  max-width: 720px;
+  box-shadow: var(--card-elev);
+  position: relative;
+  text-align: left;
+}
+
+.edu-card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 8px; background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+}
+
+.edu-card h3 { margin: 0 0 0.4rem 12px; font-size: 1.5rem; color: var(--accent-1); }
+.edu-card h4 { margin: 0 0 6px 12px; font-size: 1.2rem; color: #fff; }
+.edu-card .edu-year { margin: 0 0 8px 12px; color: #ccc; font-size: 0.95rem; }
+.edu-card p { margin: 0 0 0 12px; color: rgba(255,255,255,0.9); line-height: 1.6; }
+.section-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.nav-btn {
+  padding: 10px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, #42e695, #fdd819);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.back-btn {
+  background: linear-gradient(135deg, #7873f5, #6a1b9a);
+}
+
+.next-btn {
+  background: linear-gradient(135deg, #42e695, #fdd819);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section-navigation {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .nav-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+/* ---------- Skills, Interests, Experience ---------- */
+.skills-list, .interests-list, .experience-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.8rem; padding: 0; margin: 0;
+}
+
+.colorful-hover li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.05);
+  font-weight: 600; color: #fff;
+  transition: all 0.35s ease;
+}
+
+.colorful-hover li svg {
+  font-size: 1.2rem;
+  color: var(--accent-2);
+  transition: color 0.35s ease;
+}
+
+.colorful-hover li:hover {
+  transform: translateY(-6px);
+  background: linear-gradient(90deg, #ffcc70, #6dd3ff, #c77dff);
+  color: #111;
+}
+
+.colorful-hover li:hover svg {
+  color: #111;
+}
+
+/* ---------- Experience ---------- */
+.experience-card {
+  margin: 2rem auto 0;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius-lg);
+  max-width: 720px;
+  box-shadow: var(--card-elev);
+  position: relative;
+  text-align: left;
+}
+
+.experience-card::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 8px; background: linear-gradient(180deg, var(--accent-2), #c77dff);
+}
+
+.experience-card h3 {
+  margin: 0 0 1rem 12px;
+  font-size: 1.4rem;
+  color: var(--accent-2);
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 880px) {
+  .tab-card { height: 120px; }
+  .skills-list, .interests-list, .experience-list { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+}
+
+@media (max-width: 520px) {
+  .about-section { padding: 2rem 1rem; }
+  .tab-cards { grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+  .tab-card { height: 100px; }
+  .edu-card h3 { font-size: 1.1rem; }
+  .edu-card h4 { font-size: 1rem; }
+  .skills-list, .interests-list, .experience-list { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1400px) {
+  .about-section { padding: 6rem 2.5rem; }
+  .tab-cards { gap: 2rem; }
+  .tab-card { height: 160px; }
+  .edu-card, .experience-card { max-width: 900px; }
+}
+.education-org-name {
+  font-size: 1.2rem;          /* readable size */
+  font-weight: 600;           /* bold but not too heavy */
+  color: #4a90e2;             /* elegant blue tone */
+  margin: 0.3rem 0 0.6rem 0;  /* spacing */
+  text-align: center;         /* centered for neatness */
+  letter-spacing: 0.5px;      /* slight spacing */
+  position: relative;
+  display: inline-block;
+  padding: 4px 12px;
+  background: linear-gradient(90deg, #e0f0ff, #f3f9ff);
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-org-name:hover {
+  transform: scale(1.05); /* slight zoom effect */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(90deg, #d1e9ff, #e8f4ff);
+}
+
+.education-percentage {
+  border-style:solid;
+  border-color:gold;
+  border-width:1px;
+  padding:7px;
+  color:red;
+  font-weight:600;
+  font-size: 14px;
+  width:200px;
+  background-color: black;
+  border-radius:10px;
+}

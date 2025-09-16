@@ -1,0 +1,43 @@
+/* Animations for smooth scroll, fade-in, slide, hover */
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+.slide-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 1s forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover scale animation */
+.scale-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.scale-hover:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Button hover gradient */
+.btn-hover {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  transition: all 0.3s ease;
+}
+.btn-hover:hover {
+  background: linear-gradient(135deg, #764ba2, #667eea);
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
