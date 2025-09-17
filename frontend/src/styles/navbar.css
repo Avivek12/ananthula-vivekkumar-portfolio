@@ -62,49 +62,80 @@
   gap: 2rem;
 }
 
-.nav-link {
+/* more specific to beat Bootstrap or other libs */
+.navbar-menu .nav-link,
+button.nav-link {
+  display: inline-block;            /* make it button-like */
   cursor: pointer;
   position: relative;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1rem;
-  padding: 8px 15px;
-  border-radius: 8px;
-  transition: all 0.4s ease;
-  color: white;
-  overflow: hidden;
-  background-image: linear-gradient(white,black);
+  padding: 10px 18px;
+  margin: 6px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: #fff;
+  text-transform: capitalize;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
   background-size: 200% 200%;
-  text-align: center;
+  transition: transform .28s ease, box-shadow .28s ease, color .28s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  overflow: visible; /* keep pseudo-element visible */
 }
 
-/* Sliding gradient wave underline */
-.nav-link::after {
+/* hover / active visual */
+.navbar-menu .nav-link:hover,
+button.nav-link:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 30px rgba(44,83,100,0.6);
+  color: #fff7d6;
+  background-position: right center;
+}
+
+/* keyboard focus */
+.navbar-menu .nav-link:focus,
+button.nav-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(102,126,234,0.18), 0 6px 22px rgba(0,0,0,0.45);
+}
+
+/* sliding gradient wave underline pseudo-element */
+.navbar-menu .nav-link::after,
+button.nav-link::after {
   content: "";
   position: absolute;
-  width: 0;
+  left: 10%;                /* small inset so it looks nicer */
+  right: 10%;
+  bottom: 6px;              /* inside the element so not clipped */
   height: 3px;
-  bottom: -5px;
-  left: 0;
+  width: 0;
+  border-radius: 4px;
   background: linear-gradient(90deg, #ff6a00, #ee0979, #ffdd00);
-  border-radius: 2px;
-  transition: width 0.4s ease;
+  background-size: 200% 100%;   /* required for the wave animation */
+  transition: width 0.35s ease;
 }
 
-.nav-link:hover::after {
-  width: 100%;
-  animation: wave 1s linear infinite;
+/* expand underline on hover and start background animation */
+.navbar-menu .nav-link:hover::after,
+button.nav-link:hover::after {
+  width: calc(100% - 20%); /* left/right inset taken into account */
+  animation: wave 1.1s linear infinite;
 }
 
-.nav-link:hover {
-  color: #ffe600;
-  transform: scale(1.1) translateY(-2px);
-  text-shadow: 0 0 10px #ffe600, 0 0 20px #ff6a00, 0 0 30px #ffdd00;
-}
-
+/* animated gradient movement */
 @keyframes wave {
-  0% { background-position: 0 0; }
+  0%   { background-position: 0% 0; }
   100% { background-position: 200% 0; }
 }
+
+/* optional: active/selected state */
+.navbar-menu .nav-link.active,
+button.nav-link.active {
+  background: linear-gradient(135deg,#ff512f,#dd2476);
+  color: white;
+  transform: translateY(-2px) scale(1.02);
+}
+
 
 /* Hamburger toggle for mobile */
 .navbar-toggle {

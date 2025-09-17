@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../styles/contact.css";
+import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp, FaHeart  } from "react-icons/fa";
 
 function Contact() {
   const [formData, setFormData] = useState({ fullName: "", email: "", message: "" });
@@ -50,6 +51,14 @@ function Contact() {
 
   return (
     <section className="contact" id="contact">
+      {/* Feedback Like Section */}
+        
+        <div className="feedback">
+          <button onClick={handleLike} className="like-btn">
+  <FaHeart className="like-icon" /> Like
+</button>
+          <span className="like-count">{likes} Likes</span>
+        </div>
       <div className="container">
         <h2 className="section-title">Contact Me</h2>
 
@@ -81,12 +90,64 @@ function Contact() {
           {success && <div className="success-msg animate-fade-in">Message Sent!</div>}
         </form>
 
-        {/* Feedback Like Section */}
-        <div className="feedback">
-          <button onClick={handleLike} className="like-btn">👍 Like</button>
-          <span className="like-count">{likes} Likes</span>
-        </div>
+        
       </div>
+      <div className="contact-info-container">
+  <h2 className="contact-info-title">Connect With Me</h2>
+  <div className="contact-links">
+  <a
+    href="https://github.com/Avivek12"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="contact-card github"
+  >
+    <FaGithub className="contact-icon" /> Github
+  </a>
+
+  <a
+ href="https://www.linkedin.com/in/vivekkumar-a-8123911b7" target="_blank"
+    rel="noopener noreferrer"
+    className="contact-card linkedin"
+  >
+    <FaLinkedin className="contact-icon" /> LinkedIn
+  </a>
+
+  <a
+    href="https://twitter.com/Vivekananthula"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="contact-card twitter"
+  >
+    <FaTwitter className="contact-icon" /> Twitter
+  </a>
+
+  <a
+    href="https://wa.me/919618021890"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="contact-card whatsapp"
+  >
+    <FaWhatsapp className="contact-icon" /> Whatsapp
+  </a>
+</div>
+
+  <div className="contact-details">
+    <div className="contact-input">
+      <label>Email Address</label>
+      <input type="text" value="ananthulavivekumar@gmail.com" readOnly />
+    </div>
+    <div className="contact-input">
+      <label>Full Name</label>
+      <input type="text" value="Ananthula Vivekkumar" readOnly />
+    </div>
+    <div className="contact-input">
+      <label>Location</label>
+      <input type="text" value="Hyderabad, India" readOnly />
+    </div>
+  </div>
+</div>
+
+    
     </section>
   );
 }

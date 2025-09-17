@@ -12,7 +12,8 @@
   overflow: hidden;
 
   /* Gradient animated background */
-  background: linear-gradient(135deg, #e0f7fa, #fff3e0, #e8f5e9, #f3e5f5, #e0f7fa);
+ background: linear-gradient(135deg,#00FF85, #A8DADC, #FF6F61, #B39CD0, #FFC1CC, #FFEB3B, #FF4500);
+
   background-size: 500% 500%;
   animation: gradientShift 20s ease infinite;
 }
@@ -169,15 +170,20 @@
 }
 
 /* ================= Buttons ================= */
-.hero-button-container { display: flex; justify-content: center; margin-top: 1.5rem; z-index: 3; }
+.hero-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  z-index: 2;
+}
 
 .hero-btn {
-  padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1.5rem, 3vw, 2rem);
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  padding: clamp(0.6rem, 2vw, 0.9rem) clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
   border-radius: 50px;
   border: none;
   cursor: pointer;
-  color: white;
+  color: #fff;
   background: linear-gradient(270deg, #6a1b9a, #ab47bc, #e91e63);
   background-size: 300% 300%;
   animation: buttonGlow 4s ease-in-out infinite;
@@ -186,18 +192,15 @@
 
 .hero-btn:hover {
   transform: scale(1.15);
-  box-shadow: 0 0 20px rgba(171, 71, 188, 0.7);
-  background: linear-gradient(270deg, #ff6a00, #ff3d00, #ff1744); /* new hover gradient */
-  background-size: 300% 300%;
-  color:#00f0ff;
+  box-shadow: 0 0 25px rgba(171, 71, 188, 0.7);
+  background: linear-gradient(270deg, #ff6a00, #ff3d00, #ff1744);
+  color: #00f0ff;
 }
 
 @keyframes buttonGlow {
-  0% { background-position: 0% 50%; }
+  0%,100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
-
 .section-navigation {
   display: flex;
   justify-content: space-between;

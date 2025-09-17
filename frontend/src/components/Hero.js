@@ -64,6 +64,7 @@ function Hero() {
             }
           </div>
         </div>
+        {/* Call to Action Button */}
         <div className="hero-button-container">
           <a href="#contact" className="btn hero-btn">
             Connect & Collaborate <FaLaptopCode className="desc-icon" />
