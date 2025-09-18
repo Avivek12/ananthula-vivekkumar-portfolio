@@ -3,9 +3,7 @@ import "../styles/contact.css";
 import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp, FaHeart } from "react-icons/fa";
 
 // Use environment variable for API URL; empty string for production (same domain)
-const API_URL = ""; // empty string works for same domain
-
-
+const API_URL = "https://ananthula-vivekkumar-portfolio.onrender.com";
 function Contact() {
   const [formData, setFormData] = useState({ fullName: "", email: "", message: "" });
   const [success, setSuccess] = useState(false);
@@ -102,6 +100,7 @@ function Contact() {
       {/* Contact Links */}
       <div className="contact-info-container">
         <h2 className="contact-info-title">Connect With Me</h2>
+        <div className="icons-container">
         <div className="contact-links">
           <a href="https://github.com/Avivek12" target="_blank" rel="noopener noreferrer" className="contact-card github">
             <FaGithub className="contact-icon" /> Github
@@ -115,6 +114,7 @@ function Contact() {
           <a href="https://wa.me/919618021890" target="_blank" rel="noopener noreferrer" className="contact-card whatsapp">
             <FaWhatsapp className="contact-icon" /> Whatsapp
           </a>
+        </div>
         </div>
 
         {/* Contact Details */}

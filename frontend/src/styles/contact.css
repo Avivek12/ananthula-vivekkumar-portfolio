@@ -1,7 +1,7 @@
 /* === CONTACT SECTION === */
 .contact {
   padding: 100px 20px;
-  background: linear-gradient(180deg, #fdfbfb 0%, #e8ecf3 100%);
+  background: linear-gradient(180deg, white,black,transparent);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -314,6 +314,7 @@
   margin: 0 auto;
   text-align: center;
   font-family: 'Poppins', sans-serif;
+  
 }
 
 .contact-info-title {
@@ -386,6 +387,11 @@
   flex-direction: column;
   gap: 1.5rem;
   align-items: center;
+  background-image: linear-gradient(black,white);
+  padding:20px;
+  border-radius:20px;
+  margin-bottom:20px;
+  
 }
 
 .contact-input {
@@ -399,7 +405,8 @@
 .contact-input label {
   font-weight: 500;
   margin-bottom: 0.5rem;
-  color: #555;
+  color:#1da1f2;
+  font-size: 20px;
 }
 
 .contact-input input {
