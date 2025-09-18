@@ -24,7 +24,7 @@ function Navbar() {
   };
 
   return (
-    <nav className={`navbar ${scroll ? "navbar-scrolled" : ""}`}>
+    <nav id = "navbar" className={`navbar ${scroll ? "navbar-scrolled" : ""}`}>
       <div className="container navbar-container">
         <div className="navbar-brand" onClick={() => scrollToSection("home")}>
           Vivekkumar Ananthula

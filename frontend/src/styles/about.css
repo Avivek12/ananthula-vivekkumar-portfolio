@@ -141,11 +141,14 @@
   max-width: var(--max-width);
   margin: 0 auto 2.5rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: clamp(0.9rem, 2vw, 1.6rem);
   padding: 0 1rem;
+
+  /* Flexible grid for responsiveness */
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
 }
 
+/* Tab card styling */
 .tab-card {
   cursor: pointer;
   display: flex;
@@ -153,22 +156,56 @@
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  padding: 1.2rem;
-  height: clamp(120px, 14vh, 150px);
+  padding: 1rem;
+  height: auto; /* let it adjust naturally */
   border-radius: var(--radius-lg);
-
-  /* Gradient border effect */
   background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.08)) padding-box,
               linear-gradient(135deg, #ffcc70, #6dd3ff, #c77dff) border-box;
   border: 3px solid transparent;
-
   color: #fff;
   font-weight: 700;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   transition: transform .45s ease, box-shadow .45s ease, background .6s ease;
   position: relative;
   overflow: hidden;
+  text-align: center; /* ensures text aligns on mobile */
 }
+
+/* Tablet */
+@media (max-width: 992px) {
+  .tab-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+  .tab-cards {
+    grid-template-columns: 1fr; /* single column */
+  }
+  .tab-card {
+    padding: 1rem;
+  }
+  .tab-card .icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.2rem;
+  }
+  .tab-card h4 {
+    font-size: 0.95rem;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1400px) {
+  .tab-card {
+    height: 160px;
+  }
+  .tab-cards {
+    gap: 2rem;
+  }
+}
+
 
 /* Subtle animated background overlay */
 .tab-card::before {

@@ -12,10 +12,11 @@
   overflow: hidden;
 
   /* Gradient animated background */
- background: linear-gradient(135deg,#00FF85, #A8DADC, #FF6F61, #B39CD0, #FFC1CC, #FFEB3B, #FF4500);
-
-  background-size: 500% 500%;
-  animation: gradientShift 20s ease infinite;
+ /*background: linear-gradient(135deg, rgba(15,15,15,0.95), rgba(60,60,60,0.8));*/
+ /*background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(30,30,30,0.85));*/
+ background: linear-gradient(-45deg, #ffffff, #000000, #cccccc, #333333);
+  background-size: 400% 400%;
+  animation: gradientShift 18s ease infinite;
 }
 
 @keyframes gradientShift {
@@ -118,6 +119,102 @@
 @keyframes orbit-path-4 { from { transform: rotate(0); } to { transform: rotate(-360deg); } }
 @keyframes orbit-path-5 { from { transform: rotate(0); } to { transform: rotate(360deg); } }
 
+/* ====== Image Caption Card ====== */
+.card-style {
+  background: rgba(20, 20, 20, 0.7);  /* dark glass look */
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  padding: 1.5rem 1.2rem;
+  margin-top: 1.5rem;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: #fff;
+
+  /* true card feel */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+
+  /* animation */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: floatCard 6s ease-in-out infinite;
+}
+
+.card-style {
+  background: rgba(20, 20, 20, 0.5);  /* slightly transparent dark layer */
+  backdrop-filter: blur(8px);          /* softer blur */
+  border-radius: 16px;
+  padding: 1.2rem 1rem;
+  margin: 1.5rem auto;
+  max-width: 400px;
+  text-align: center;
+  color: #fff;
+
+  border: 1px solid rgba(255,255,255,0.1);  /* subtle border */
+  box-shadow: 0 6px 25px rgba(0,0,0,0.35);   /* softer shadow */
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-style:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 35px rgba(0,255,200,0.3);  /* softer hover glow */
+}
+
+/* Remove strong glowing border */
+.card-style::before {
+  content: none;  /* remove distracting gradient glow */
+}
+
+/* Background animation layer (optional, subtle) */
+.card-bg-animation {
+  opacity: 0.1;  /* reduce intensity */
+  animation: moveStars 30s linear infinite;
+}
+
+/* Text styling */
+.caption-title {
+  font-size: clamp(1.4rem, 3vw, 1.7rem);
+  font-weight: 700;
+  color: #ffcc70;  /* soft gradient effect or single color */
+  background: none;  /* remove gradient clip */
+  border: none;      /* remove border */
+}
+
+.caption-text {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+}
+
+.card-bg-animation {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: inherit;
+  z-index: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: moveStars 20s linear infinite;
+  opacity: 0.3;
+}
+
+/* Floating star-like movement */
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: -300px 300px; }
+}
+
+/* Content above animation */
+.card-style h4,
+.card-style p {
+  position: relative;
+  z-index: 1;
+}
+
+
 /* ================= Typing & Headings ================= */
 .greet-heading {
   font-size: clamp(1.5rem, 4vw, 3rem);
@@ -139,18 +236,23 @@
 .name-highlight.name-box {
   font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 800;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   background: linear-gradient(90deg, #f50057, #ffca28, #f50057);
   background-size: 300% 300%;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  animation: namePulse 3s infinite;
+  padding: 10px;
+  border: 1px solid black;
+  animation: namePulse 3s ease-in-out infinite;
 }
+
 @keyframes namePulse {
-  0%,100% { background-position: 0% 50%; }
+  0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
+
 
 .typing.text-gradient {
   font-size: clamp(1.2rem, 3vw, 2.5rem);
@@ -169,38 +271,65 @@
   100% { background-position: 0% 50%; }
 }
 
-/* ================= Buttons ================= */
-.hero-button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-  z-index: 2;
-}
-
-.hero-btn {
-  padding: clamp(0.6rem, 2vw, 0.9rem) clamp(1.5rem, 3vw, 2rem);
-  font-size: clamp(0.9rem, 2vw, 1.2rem);
+.hero-btn1 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: clamp(0.7rem, 2vw, 1rem) clamp(1.6rem, 3vw, 2.4rem);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 600;
   border-radius: 50px;
   border: none;
   cursor: pointer;
-  color: #fff;
+  color: #ffffff; /* force solid white */
+  letter-spacing: 0.5px;
   background: linear-gradient(270deg, #6a1b9a, #ab47bc, #e91e63);
   background-size: 300% 300%;
-  animation: buttonGlow 4s ease-in-out infinite;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
+  animation: buttonGlow 5s ease-in-out infinite;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1; /* ensures text is above overlay */
 }
 
-.hero-btn:hover {
+/* Shimmer overlay stays behind text */
+.hero-btn1::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 200%; height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.25),
+    transparent
+  );
+  transition: 0.6s;
+  z-index: 0; /* overlay stays below text */
+}
+
+.hero-btn1:hover::after {
+  left: 100%;
+}
+
+.hero-btn1:hover {
   transform: scale(1.15);
-  box-shadow: 0 0 25px rgba(171, 71, 188, 0.7);
+  box-shadow: 0 0 30px rgba(233, 30, 99, 0.7);
   background: linear-gradient(270deg, #ff6a00, #ff3d00, #ff1744);
-  color: #00f0ff;
+  color: #ffffff; /* keep it white even on hover */
+}
+
+/* Icon style */
+.desc-icon {
+  font-size: 1.3rem;
+  color: #00f0ff; /* glowing cyan accent */
 }
 
 @keyframes buttonGlow {
   0%,100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
+
 .section-navigation {
   display: flex;
   justify-content: space-between;
@@ -440,4 +569,159 @@
   .floating-desc {
     font-size: 0.65rem;
   }
+}
+.resume-btn-container {
+  margin-top: 1.5rem;
+}
+
+.resume-btn-container .btn {
+  background: linear-gradient(45deg, #ff4b2b, #ff416c);
+  color: #fff;
+  font-weight: 600;
+  padding: 0.7rem 1.5rem;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resume-btn-container .btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 77, 120, 0.4);
+}
+
+/* ================= Hero Buttons ================= */
+.hero-button-container.btn.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: clamp(0.7rem, 2vw, 1rem) clamp(1.6rem, 3vw, 2.4rem);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  color: #ffffff;
+  background: linear-gradient(270deg, #6a1b9a, #ab47bc, #e91e63);
+  background-size: 300% 300%;
+  animation: buttonGlow 5s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  text-align: center;
+}
+
+/* Shimmer overlay */
+.hero-button-container.btn.hero-btn::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -100%;
+  width: 200%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+  transition: 0.6s;
+  z-index: 0;
+}
+
+.hero-button-container.btn.hero-btn:hover::after {
+  left: 100%;
+}
+
+.hero-button-container.btn.hero-btn:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 30px rgba(233, 30, 99, 0.7);
+  background: linear-gradient(270deg, #ff6a00, #ff3d00, #ff1744);
+  color: #ffffff;
+}
+
+/* Icon inside button */
+.hero-button-container.btn.hero-btn .desc-icon {
+  font-size: 1.3rem;
+  color: #00f0ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero-button-container.btn.hero-btn {
+    width: 80%;
+    font-size: 1rem;
+    padding: 0.7rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-button-container.btn.hero-btn {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+    margin-top:20px;
+  }
+}
+
+/* Button glow animation */
+@keyframes buttonGlow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+
+/* Nickname */
+.caption-nickname {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.6);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+/* Personal Info */
+.caption-info p {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.75);
+  margin: 0.2rem 0;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.caption-info p:hover {
+  color: #00f0ff;
+  transform: translateX(5px);
+  cursor: pointer;
+}
+
+/* Social Icons */
+.caption-socials {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0.7rem 0;
+}
+.social-icon {
+  font-size: 1.2rem;
+  color: #fff;
+  transition: transform 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+.social-icon:hover {
+  transform: scale(1.3);
+  color: #00f0ff;
+}
+
+/* Badges */
+.caption-badges {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.badge {
+  font-size: 0.7rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #ff6f61, #00f0ff);
+  color: #fff;
+  font-weight: 500;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(0,240,255,0.6);
 }

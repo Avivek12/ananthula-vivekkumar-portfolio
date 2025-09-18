@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.c1a44d59.css",
+    "main.js": "/static/js/main.d8bc46ed.js",
+    "static/media/profile_photo.jpg": "/static/media/profile_photo.f885db12d3ede6ce3531.jpg",
+    "static/media/smart-health.png": "/static/media/smart-health.6209ce84ffd277b9c6bc.png",
+    "static/media/restaurent-app.png": "/static/media/restaurent-app.991f8d18be6f6b30a1ea.png",
+    "static/media/devjobs.png": "/static/media/devjobs.8420d661498fa22ac2f6.png",
+    "static/media/lottery-ticket.png": "/static/media/lottery-ticket.13bc20ab19cf6b0792d9.png",
+    "static/media/skillset-design.png": "/static/media/skillset-design.a6fb0ab8674f9d455bd8.png",
+    "static/media/keyboard-typing-sound-effect.mp3": "/static/media/keyboard-typing-sound-effect.d7bb0b205862762152fa.mp3",
+    "static/media/VIVEKKUMAR_RESUME3.pdf": "/static/media/VIVEKKUMAR_RESUME3.b759eae73d265aff83fd.pdf",
+    "static/media/login-form.png": "/static/media/login-form.89954e034d1c4e0e9695.png",
+    "index.html": "/index.html",
+    "main.c1a44d59.css.map": "/static/css/main.c1a44d59.css.map",
+    "main.d8bc46ed.js.map": "/static/js/main.d8bc46ed.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c1a44d59.css",
+    "static/js/main.d8bc46ed.js"
+  ]
+}
