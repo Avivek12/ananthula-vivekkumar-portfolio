@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/projects.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "../scripts/balloons.js"; // balloons animation
 
 import devjobsImg from "../assets/images/devjobs.png"; 
 import loginform from "../assets/images/login-form.png";
@@ -11,8 +12,15 @@ import skillsetdesign from "../assets/images/skillset-design.png";
 import smarthealth from "../assets/images/smart-health.png";
 
 const Projects = () => {
+  const [activeCategory, setActiveCategory] = useState("All");
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
+
+    // initialize balloons after component mounts
+    if (window.initBalloons) {
+      window.initBalloons();
+    }
   }, []);
 
   const categories = ["All", "React", "Javascript", "HTML/CSS", "Bootstrap"];
@@ -23,8 +31,6 @@ const Projects = () => {
     "HTML/CSS": ["HTML", "CSS"],
     "Bootstrap": ["Bootstrap"]
   };
-
-  const [activeCategory, setActiveCategory] = useState("All");
 
   const projects = [
     {
@@ -77,7 +83,6 @@ const Projects = () => {
     },
   ];
 
-  // Filter projects based on selected category
   const filteredProjects = projects.filter(project => {
     if (activeCategory === "All") return true;
     return project.tech.some(t => categoryMapping[activeCategory].includes(t));
@@ -85,10 +90,12 @@ const Projects = () => {
 
   return (
     <section className="projects-section" id="projects">
-      <div className="container">
+      {/* Balloons Container */}
+      <div className="balloons-container"></div>
+
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <h2 className="section-title" data-aos="fade-down">Projects</h2>
 
-        {/* Category Navigation */}
         <div className="projects-nav" data-aos="fade-up" data-aos-delay="100">
           {categories.map((cat, idx) => (
             <button
@@ -101,16 +108,10 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Projects Grid */}
         <div className="row g-4 mt-4">
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project, idx) => (
-              <div
-                key={idx}
-                className="col-md-6 col-lg-4"
-                data-aos="fade-up"
-                data-aos-delay={idx * 100}
-              >
+              <div key={idx} className="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay={idx * 100}>
                 <div className="project-card glass-card">
                   <div className="project-img-wrapper">
                     <img src={project.img} alt={project.title} className="project-img" />
@@ -136,11 +137,11 @@ const Projects = () => {
           )}
         </div>
       </div>
-     <div className="section-navigation">
-  <a href="#skills" className="nav-btn back-btn">Back</a>
-  <a href="#contact" className="nav-btn next-btn">Next</a>
-</div>
- 
+
+      <div className="section-navigation">
+        <a href="#skills" className="nav-btn back-btn">Back</a>
+        <a href="#contact" className="nav-btn next-btn">Next</a>
+      </div>
     </section>
   );
 };

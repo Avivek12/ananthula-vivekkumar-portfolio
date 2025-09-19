@@ -2,32 +2,37 @@ window.initBalloons = function () {
   const container = document.querySelector(".balloons-container");
   if (!container) return;
 
-  container.innerHTML = ""; // Clear existing balloons
+  container.innerHTML = ""; // Clear existing stars
 
-  const balloonCount = 5; // number of balloons
-  for (let i = 0; i < balloonCount; i++) {
-    const balloon = document.createElement("div");
-    balloon.className = "balloon";
+  const starCount = 60; // number of stars
 
-    // Random position and size
-    balloon.style.left = `${Math.random() * 90}%`;
-    balloon.style.width = `${5 + Math.random() * 7}px`;
-    balloon.style.height = `${17 + Math.random() * 13}px`;
+  for (let i = 0; i < starCount; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
 
-    // Random gradient color
-    balloon.style.background = `linear-gradient(${Math.random() * 360}deg,
-      hsl(${Math.random() * 360}, 80%, 60%),
-      hsl(${Math.random() * 360}, 70%, 50%))`;
+    // Random horizontal position
+    star.style.left = `${Math.random() * 100}%`;
 
-    // Horizontal sway amplitude
-    const amplitude = Math.random() * 20 + 10; 
-    balloon.style.setProperty('--amplitude', `${amplitude}px`);
+    // Random size (slightly bigger for visibility)
+    const size = 2 + Math.random() * 3; // 2px to 5px
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+
+    // Random opacity
+    star.style.opacity = 0.6 + Math.random() * 0.4;
 
     // Random animation duration
-    const duration = Math.random() * 5 + 5; 
-    balloon.style.animation = `floatBalloon ${duration}s ease-in-out infinite alternate`;
+    const duration = 2 + Math.random() * 8; // 5s to 15s
 
-    balloon.style.transformOrigin = "center bottom";
-    container.appendChild(balloon);
+    // Random initial delay
+    const delay = Math.random() * 10;
+
+    // Animation name
+    star.style.animation = `fallStar ${duration}s linear ${delay}s infinite`;
+
+    // Ensure stars are above background but below content
+    star.style.zIndex = 0;
+
+    container.appendChild(star);
   }
 };

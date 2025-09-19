@@ -10,7 +10,7 @@
   color: #333;
   position: relative;
   overflow: hidden;
-
+  margin-top:20px;
   /* Gradient animated background */
  /*background: linear-gradient(135deg, rgba(15,15,15,0.95), rgba(60,60,60,0.8));*/
  /*background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(30,30,30,0.85));*/
@@ -373,25 +373,49 @@
   }
 }
 
-/* ================= Bubble Icons ================= */
+/* ================= Falling Bubble Icons ================= */
 .bubble-icon {
   position: absolute;
-  font-size: clamp(1.8rem, 3vw, 2.8rem);
-  opacity: 0.9;
-  animation: bubbleFloatRandom 20s infinite ease-in-out,
-             bubbleGlow 6s infinite ease-in-out;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
-  transition: transform 0.3s ease, filter 0.3s ease;
+  top: -50px; /* start above the hero */
+  opacity: 0.8;
+  font-size: clamp(2rem, 3vw, 3rem);
+  z-index: 2;
+  animation: fallBubble linear infinite;
   cursor: pointer;
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Hover boost */
+/* Hover effect */
 .bubble-icon:hover {
   transform: scale(1.3);
   filter: drop-shadow(0 0 25px rgba(255,255,255,0.9));
 }
 
-/* ========== Tech-Specific Colors ========== */
+/* Keyframes for falling animation */
+@keyframes fallBubble {
+  0% {
+    top: -50px;
+    transform: translateX(0) rotate(0deg);
+    opacity: 0.8;
+  }
+  100% {
+    top: 100vh; /* end at bottom of viewport */
+    transform: translateX(var(--x-move, 0px)) rotate(360deg);
+    opacity: 0.6;
+  }
+}
+
+/* Assign random horizontal movement & speed to each icon */
+.bubble-icon:nth-of-type(1) { left: 10%; animation-duration: 7s; --x-move: 20px; }
+.bubble-icon:nth-of-type(2) { left: 25%; animation-duration: 9s; --x-move: -15px; }
+.bubble-icon:nth-of-type(3) { left: 50%; animation-duration: 8s; --x-move: 25px; }
+.bubble-icon:nth-of-type(4) { left: 70%; animation-duration: 10s; --x-move: -20px; }
+.bubble-icon:nth-of-type(5) { left: 85%; animation-duration: 7.5s; --x-move: 15px; }
+.bubble-icon:nth-of-type(6) { left: 15%; animation-duration: 8.5s; --x-move: -10px; }
+.bubble-icon:nth-of-type(7) { left: 60%; animation-duration: 9.5s; --x-move: 30px; }
+.bubble-icon:nth-of-type(8) { left: 40%; animation-duration: 7.8s; --x-move: -25px; }
+
+/* ====== Tech-Specific Colors ====== */
 .bubble-icon.react     { color: #61DAFB; text-shadow: 0 0 18px #61DAFB; }   /* React cyan */
 .bubble-icon.node      { color: #68A063; text-shadow: 0 0 18px #68A063; }   /* Node.js green */
 .bubble-icon.js        { color: #F7DF1E; text-shadow: 0 0 18px #F7DF1E; }   /* JavaScript yellow */
@@ -400,31 +424,6 @@
 .bubble-icon.html      { color: #E34F26; text-shadow: 0 0 18px #E34F26; }   /* HTML orange */
 .bubble-icon.css       { color: #1572B6; text-shadow: 0 0 18px #1572B6; }   /* CSS blue */
 .bubble-icon.bootstrap { color: #7952B3; text-shadow: 0 0 18px #7952B3; }   /* Bootstrap purple */
-
-/* ========== Floating animation ========== */
-@keyframes bubbleFloatRandom {
-  0%   { transform: translate(0,0) scale(1); opacity: 0.7; }
-  25%  { transform: translate(50px,-80px) scale(1.1); opacity: 1; }
-  50%  { transform: translate(-70px,-150px) scale(0.9); opacity: 0.6; }
-  75%  { transform: translate(40px,-200px) scale(1.05); opacity: 1; }
-  100% { transform: translate(-30px,-300px) scale(1); opacity: 0.7; }
-}
-
-/* Glow/Pulse effect */
-@keyframes bubbleGlow {
-  0%,100% { filter: drop-shadow(0 0 8px rgba(255,255,255,0.6)); }
-  50%     { filter: drop-shadow(0 0 20px rgba(255,255,255,1)); }
-}
-
-/* ========== Individual positions + timings ========== */
-.bubble-icon:nth-of-type(1){ left:10%; bottom:-5%;  animation-duration:18s, 6s; }
-.bubble-icon:nth-of-type(2){ left:25%; bottom:-10%; animation-duration:20s, 6s; animation-delay:3s, 1s; }
-.bubble-icon:nth-of-type(3){ left:50%; bottom:-8%;  animation-duration:22s, 6s; animation-delay:6s, 2s; }
-.bubble-icon:nth-of-type(4){ left:70%; bottom:-12%; animation-duration:19s, 6s; animation-delay:2s, 0.5s; }
-.bubble-icon:nth-of-type(5){ left:85%; bottom:-6%;  animation-duration:23s, 6s; animation-delay:5s, 1.5s; }
-.bubble-icon:nth-of-type(6){ left:15%; bottom:-15%; animation-duration:21s, 6s; animation-delay:4s, 2s; }
-.bubble-icon:nth-of-type(7){ left:60%; bottom:-18%; animation-duration:24s, 6s; animation-delay:7s, 1s; }
-.bubble-icon:nth-of-type(8){ left:40%; bottom:-20%; animation-duration:20s, 6s; animation-delay:3s, 0.8s; }
 
 /* ================= Responsive Tweaks ================= */
 @media (max-width:1024px){

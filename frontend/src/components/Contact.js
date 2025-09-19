@@ -100,22 +100,27 @@ function Contact() {
       {/* Contact Links */}
       <div className="contact-info-container">
         <h2 className="contact-info-title">Connect With Me</h2>
-        <div className="icons-container">
-        <div className="contact-links">
-          <a href="https://github.com/Avivek12" target="_blank" rel="noopener noreferrer" className="contact-card github">
-            <FaGithub className="contact-icon" /> Github
-          </a>
-          <a href="https://www.linkedin.com/in/vivekkumar-a-8123911b7" target="_blank" rel="noopener noreferrer" className="contact-card linkedin">
-            <FaLinkedin className="contact-icon" /> LinkedIn
-          </a>
-          <a href="https://twitter.com/Vivekananthula" target="_blank" rel="noopener noreferrer" className="contact-card twitter">
-            <FaTwitter className="contact-icon" /> Twitter
-          </a>
-          <a href="https://wa.me/919618021890" target="_blank" rel="noopener noreferrer" className="contact-card whatsapp">
-            <FaWhatsapp className="contact-icon" /> Whatsapp
-          </a>
+<div className="icons-container">
+      <div className="contact-links">
+        <div className="contact-card github">
+          <FaGithub className="contact-icon" />
+          <span className="contact-text">Github</span>
         </div>
+        <div className="contact-card linkedin">
+          <FaLinkedin className="contact-icon" />
+          <span className="contact-text">LinkedIn</span>
         </div>
+        <div className="contact-card twitter">
+          <FaTwitter className="contact-icon" />
+          <span className="contact-text">Twitter</span>
+        </div>
+        <div className="contact-card whatsapp">
+          <FaWhatsapp className="contact-icon" />
+          <span className="contact-text">Whatsapp</span>
+        </div>
+      </div>
+    </div>
+  );
 
         {/* Contact Details */}
         <div className="contact-details">
